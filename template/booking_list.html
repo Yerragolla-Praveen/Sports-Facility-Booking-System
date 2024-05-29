@@ -1,0 +1,35 @@
+{% extends 'facility_list.html' %}
+{% block main %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Bookings</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body style="background-image: url(https://th.bing.com/th/id/OIP.Zbv_dDhUQq7uy6pbsHTPLgHaEp?w=290&h=183&c=7&r=0&o=5&dpr=1.3&pid=1.7);  background-repeat: no-repeat; background-attachment: fixed; background-size: cover;" >
+    <h1 style="margin-left: 40%;">All Bookings</h1>
+    <table class="table border" style="margin-left: 25%; width: 50%;">
+        <thead>
+            <tr>
+                <th>Facility</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in bookings %}
+            <tr>
+                <td>{{ booking.facility.name }}</td>
+                <td>{{ booking.start_time }}</td>
+                <td>{{ booking.end_time }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a style="margin-left: 40%;" class="btn btn-outline-warning" href="{% url 'facility_list' %}">Back to Facilities</a>
+</body>
+</html>
+
+{% endblock %}
+

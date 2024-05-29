@@ -1,0 +1,36 @@
+{% extends 'facility_list.html' %}
+{% block main %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book {{ facility.name }}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+</head>
+<body style="background-image: url(https://th.bing.com/th/id/OIP.jjebQWq63sC8_QpIu9iSxAHaHa?w=183&h=183&c=7&r=0&o=5&dpr=1.3&pid=1.7); background-repeat: no-repeat; background-attachment: fixed; background-size: cover;">
+    <div class="container mb-5" style="width: 30%;">
+    <h1 style="margin-left: 10%;">Book {{ facility.name }}</h1>
+    <form method="post" style="margin-left: 10%;">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <p class="">Price per hour: INR {{ facility.price_per_hour }}</p>
+        <button style="margin-left: 35%;" type="submit">Book</button>
+    </form>
+    <div class="time-slots mt-3" style="margin-left: 10%; ">
+        <ul class="list-group">
+            {% for slot in time_slots %}
+            <li class="list-group-item {% if slot.is_booked %}booked{% else %}available{% endif %}">
+                {{ slot.start_time|date:"H:i" }} - {{ slot.end_time|date:"H:i" }}
+                {% if slot.is_booked %} (Booked) {% else %} (Available) {% endif %}
+            </li>
+            
+            {% endfor %}
+        </ul>
+    </div>
+    <a style="margin-left: 15%;" class="btn mt-3 btn-outline-dark" href="{% url 'facility_detail' facility.pk %}">Back to Facility Details</a>
+    </div>
+</body>
+</html>
+
+{% endblock %}

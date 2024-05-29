@@ -1,0 +1,39 @@
+{% extends 'facility_list.html' %}
+
+{% block main %}
+    <body style="background-image: url(https://static.vecteezy.com/system/resources/previews/001/827/556/non_2x/abstract-bokeh-effect-with-soft-light-background-vector.jpg); background-repeat: no-repeat; background-attachment: fixed; background-size: cover;">
+      <div class="container " style="margin-left: 30%; margin-right: 60%;">
+         <div class="row">
+            <div class="col-lg-8 mt-5">
+                <h3 style="color: blue; margin-left: 10%;">Logout Successfully</h3>
+                <div class="fm  mt-5 " style="margin-right: 50%; border-radius: 5px;">
+                    <form action="login" method="post" style="margin-left: 15%; margin-right: 10%; background-color: transparent;">{%csrf_token%}
+                        <h3 class="h3 mt-3 mb-3">Login Page</h3>
+                        {% if error %}
+                        <div>
+                          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <strong>{{error}}</strong> 
+                            <button type="button" class="btn-close mt-2" data-bs-dismiss="alert" aria-label="Close"></button>
+                          </div>
+                        </div>
+                        {% endif %}
+                        <div>
+                            <label for="email">Username</label><br>
+                            <input type="email" name="email" id="email" placeholder="Enter Email">
+                        </div>
+                        <div>
+                            <label for="password">Password</label><br>
+                            <input type="password" name="password" id="password" placeholder="Enter Password">
+                        </div>
+                        <div>
+                            <input type="submit" value="Login" class="btn btn-outline-primary mt-2">
+                        </div><br>
+                    </form>
+                </div>
+            
+            </div>
+        </div>
+      </div>
+    </body>
+
+{% endblock %}
